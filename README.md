@@ -15,6 +15,7 @@ Clone the repository:
 git clone https://github.com/Michel-Leidson/biconomy-monitor.git
 cd biconomy-monitor
 ```
+
 Navigate to the app edit the .env file
 ```bash
 cd app
@@ -22,13 +23,18 @@ cd app
 URL=https://your-operator-url.com
 DISCORD_WEBHOOK=https://discord.com/api/webhooks/your-webhook-url
 ```
-| If DISCORD_WEBHOOK is not set, alerts will be disabled.
 
 Build and run the project with Docker Compose
 ```bash
 docker compose up --build -d
 ```
+
 Access the metrics at
 - Metrics: http://localhost:7500/metrics
 - Grafana: http://localhost:3000
 - Prometheus: http://localhost:9090
+
+## Access Pre-Configured Dashboards
+
+![image](https://github.com/user-attachments/assets/5e66a8d3-2c2c-4065-80ab-2fc8cadda541)
+
