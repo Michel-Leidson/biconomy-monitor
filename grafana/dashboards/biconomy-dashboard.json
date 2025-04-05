@@ -1,0 +1,505 @@
+{
+  "title": "Biconomy Dashboard",
+  "panels": [
+    {
+      "title": "Biconomy Version",
+      "type": "table",
+      "gridPos": { "h": 3, "w": 6, "x": 0, "y": 0 },
+      "links": [],
+      "targets": [
+        {
+          "expr": "biconomy_version",
+          "instant": true,
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "string",
+          "color": { "mode": "fixed", "fixedColor": "green" },
+          "custom": {
+            "displayMode": "color-background",
+            "align": "center",
+            "cellOptions": {
+              "type": "auto",
+              "fontSize": 16
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": { "id": "byRegexp", "options": ".*" },
+            "properties": [
+              { "id": "links", "value": [] },
+              { "id": "custom.hidden", "value": true }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "version" },
+            "properties": [
+              { "id": "displayName", "value": "Versão" },
+              { "id": "custom.hidden", "value": false }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": false,
+        "footer": { "show": false },
+        "cellHeight": "sm",
+        "filterable": false
+      }
+    },
+    {
+      "title": "Node Address",
+      "type": "table",
+      "gridPos": { "h": 3, "w": 6, "x": 6, "y": 0 },
+      "links": [],
+      "targets": [
+        {
+          "expr": "biconomy_node_info",
+          "instant": true,
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "string",
+          "color": { "mode": "fixed", "fixedColor": "green" },
+          "custom": {
+            "displayMode": "color-background",
+            "align": "center",
+            "cellOptions": {
+              "type": "auto",
+              "fontSize": 16
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": { "id": "byRegexp", "options": ".*" },
+            "properties": [
+              { "id": "links", "value": [] },
+              { "id": "custom.hidden", "value": true }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "node" },
+            "properties": [
+              { "id": "displayName", "value": "Node Address" },
+              { "id": "custom.hidden", "value": false }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": false,
+        "footer": { "show": false },
+        "cellHeight": "sm",
+        "filterable": false
+      }
+    },
+    {
+      "title": "Gas Premium",
+      "type": "stat",
+      "gridPos": { "h": 3, "w": 6, "x": 0, "y": 3 },
+      "links": [],
+      "targets": [
+        {
+          "expr": "biconomy_gas_premium_percentage",
+          "instant": true,
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "green", "value": 0 },
+              { "color": "yellow", "value": 50 },
+              { "color": "red", "value": 80 }
+            ]
+          }
+        }
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "auto"
+      }
+    },
+    {
+      "title": "Beneficiary Address",
+      "type": "table",
+      "gridPos": { "h": 3, "w": 6, "x": 6, "y": 3 },
+      "links": [],
+      "targets": [
+        {
+          "expr": "biconomy_node_info",
+          "instant": true,
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "string",
+          "color": { "mode": "fixed", "fixedColor": "green" },
+          "custom": {
+            "displayMode": "color-background",
+            "align": "center",
+            "cellOptions": {
+              "type": "auto",
+              "fontSize": 16
+            }
+          }
+        },
+        "overrides": [
+          {
+            "matcher": { "id": "byRegexp", "options": ".*" },
+            "properties": [
+              { "id": "links", "value": [] },
+              { "id": "custom.hidden", "value": true }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "beneficiary" },
+            "properties": [
+              { "id": "displayName", "value": "Beneficiary" },
+              { "id": "custom.hidden", "value": false }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": false,
+        "footer": { "show": false },
+        "cellHeight": "sm",
+        "filterable": false
+      }
+    },
+    {
+      "title": "Uptime Timeline",
+      "type": "timeseries",
+      "gridPos": { "h": 6, "w": 12, "x": 12, "y": 0 },
+      "links": [],
+      "targets": [
+        {
+          "expr": "biconomy_chain_uptime_seconds",
+          "legendFormat": "{{Name}}",
+          "range": true,
+          "format": "time_series"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "seconds",
+          "color": { "mode": "palette-classic" },
+          "custom": {
+            "drawStyle": "line",
+            "lineInterpolation": "smooth",
+            "lineWidth": 2,
+            "axisPlacement": "auto",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "orange", "value": 60 },
+              { "color": "green", "value": 300 }
+            ]
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "biconomy_chain_uptime_seconds"
+            },
+            "properties": [
+              {
+                "id": "displayName",
+                "value": ""
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom",
+          "calcs": []
+        },
+        "tooltip": {
+          "mode": "single"
+        }
+      }
+    },
+    {
+      "title": "Current Uptime",
+      "type": "stat",
+      "gridPos": { "h": 3, "w": 24, "x": 0, "y": 6 },
+      "targets": [
+        {
+          "expr": "biconomy_chain_uptime_seconds",
+          "legendFormat": "{{Name}}",
+          "instant": true,
+          "format": "time_series"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": { "mode": "thresholds" },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "orange", "value": 60 },
+              { "color": "green", "value": 300 }
+            ]
+          },
+          "unit": "seconds",
+          "decimals": 0,
+          "custom": {
+            "displayMode": "auto"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Value"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "dthms"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "auto"
+      }
+    },
+    {
+      "title": "Chain Overview",
+      "type": "table",
+      "gridPos": { "h": 11, "w": 24, "x": 0, "y": 12 },
+      "links": [],
+      "targets": [
+        {
+          "expr": "biconomy_chain_info",
+          "instant": true,
+          "format": "table"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "orange", "value": 1 },
+              { "color": "green", "value": 10 }
+            ]
+          },
+          "custom": {
+            "align": "center",
+            "displayMode": "auto",
+            "inspect": false
+          }
+        },
+        "overrides": [
+          {
+            "matcher": { "id": "byName", "options": "Value" },
+            "properties": [
+              { "id": "custom.hidden", "value": true }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "__name__" },
+            "properties": [
+              { "id": "custom.hidden", "value": true }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "instance" },
+            "properties": [
+              { "id": "custom.hidden", "value": true }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "job" },
+            "properties": [
+              { "id": "custom.hidden", "value": true }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "time" },
+            "properties": [
+              { "id": "displayName", "value": "Time" },
+              { "id": "custom.hidden", "value": false },
+              { "id": "unit", "value": "dateTimeAsIso" }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "ChainId" },
+            "properties": [
+              { "id": "displayName", "value": "Chain ID" },
+              { "id": "unit", "value": "none" },
+              { "id": "decimals", "value": 0 }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "Name" },
+            "properties": [
+              { "id": "displayName", "value": "Network" }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "Balance" },
+            "properties": [
+              { "id": "displayName", "value": "Balance" },
+              { "id": "unit", "value": "none" }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "Debug" },
+            "properties": [
+              { "id": "displayName", "value": "Debug" },
+              { 
+                "id": "mappings", 
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "TRUE": { "text": "YES", "color": "green" },
+                      "FALSE": { "text": "NO", "color": "red" }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "Rpc" },
+            "properties": [
+              { "id": "displayName", "value": "RPC" },
+              { 
+                "id": "mappings", 
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "TRUE": { "text": "OK", "color": "green" },
+                      "FALSE": { "text": "DOWN", "color": "red" }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": { "id": "byName", "options": "Status" },
+            "properties": [
+              { "id": "displayName", "value": "Status" },
+              { 
+                "id": "mappings", 
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "HEALTHY": { "text": "ONLINE", "color": "green" },
+                      "UNHEALTHY": { "text": "OFFLINE", "color": "red" }
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "footer": { "show": false },
+        "filterable": false,
+        "sortBy": [
+          {
+            "displayName": "Chain ID",
+            "desc": false
+          }
+        ],
+        "columns": [
+          "Time",
+          "ChainId",
+          "Name",
+          "Balance",
+          "Debug",
+          "Rpc",
+          "Status"
+        ],
+        "columnOrder": [
+          "Time",
+          "ChainId",
+          "Name",
+          "Balance",
+          "Debug",
+          "Rpc",
+          "Status"
+        ]
+      },
+      "transformations": [
+        {
+          "id": "organize",
+          "options": {
+            "includeByName": {
+              "Time": true,
+              "ChainId": true,
+              "Name": true,
+              "Balance": true,
+              "Debug": true,
+              "Rpc": true,
+              "Status": true
+            },
+            "indexByName": {
+              "Time": 0,
+              "ChainId": 1,
+              "Name": 2,
+              "Balance": 3,
+              "Debug": 4,
+              "Rpc": 5,
+              "Status": 6
+            },
+            "renameByName": {
+              "ChainId": "Chain ID",
+              "Name": "Network",
+              "Rpc": "RPC"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timezone": "",
+  "editable": true,
+  "refresh": "1m"
+}
