@@ -28,11 +28,11 @@ def metrics():
     metrics = []
     metrics.append(f'biconomy_version{{version="{data["version"]}"}} 1')
     metrics.append(f'biconomy_node_info{{node="{data["node"]}", beneficiary="{data["beneficiary"]}"}} 1')
-    metrics.append(f'biconomy_gas_premium_percentage {data["gas_premium_percentage"]}')
+    metrics.append(f'biconomy_gas_premium_percentage {data["gasPremiumPercentage"]}')
 
     current_time = int(time.time())
 
-    for chain in data["supported_chains"]:
+    for chain in data["supportedChains"]:
         chain_id = chain["chainId"]
         name = chain["name"]
         health = chain["healthCheck"]
