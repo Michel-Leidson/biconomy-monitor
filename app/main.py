@@ -59,9 +59,23 @@ def metrics():
             alert_parts.append(f"RPC: {rpc_operational}")
             status_tracker[chain_key]["rpc"] = False
 
-        if status == "HEALTHY" and not status_tracker[chain_key]["status"] and rpc_operational == "TRUE" and not status_tracker[chain_key]["rpc"]:
-            send_discord_alert(f"✅ Chain {name} has recovered.")
-            status_tracker[chain_key] = {"status": True, "rpc": True}
+        
+        recovered_parts = []
+        recovered = False
+
+        if status == "HEALTHY" and not status_tracker[chain_key]["status"]:
+            recovered = True
+            recovered_parts.append("Status: HEALTHY")
+            status_tracker[chain_key]["status"] = True
+
+        if rpc_operational == "TRUE" and not status_tracker[chain_key]["rpc"]:
+            recovered = True
+            recovered_parts.append("RPC: TRUE")
+            status_tracker[chain_key]["rpc"] = True
+
+        if recovered:
+            send_discord_alert(f"✅ Chain {name} has recovered.\n" + "\n".join(recovered_parts))
+
         elif alert_needed:
             alert_msg = f"🚨 Problem detected in the chain {name}\n" + "\n".join(alert_parts) + f"\nBalance: {balance}"
             send_discord_alert(alert_msg)
