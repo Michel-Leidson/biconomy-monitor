@@ -34,6 +34,8 @@ Access the metrics at
 - Grafana: http://localhost:3000
 - Prometheus: http://localhost:9090
 
+ℹ️ Note: If any of these ports are already being used by another running service, feel free to edit the docker-compose.yml file and adjust them as needed.
+
 ## Access Pre-Configured Dashboards
 
 ![image](https://github.com/user-attachments/assets/5e66a8d3-2c2c-4065-80ab-2fc8cadda541)
